@@ -1,5 +1,7 @@
 <template>
   <div>
+    {{ $t("message")["app.dashboard.analysis.timeLabel"] }} :
+    <a-date-picker @change="onChange" />
     <Chart :option="chartOption" style="height: 400px;" />
   </div>
 </template>
@@ -48,6 +50,9 @@ export default {
           ]
         };
       });
+    },
+    onChange(date, dateString) {
+      console.log(date, dateString);
     }
   },
   components: {

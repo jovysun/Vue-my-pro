@@ -7,6 +7,15 @@
         :type="collapsed ? 'menu-unfold' : 'menu-fold'"
         @click="foldHandler"
       />
+      <a-dropdown style="float:right;margin-right:30px;">
+        <a class="ant-dropdown-link" href="javascript:void(0)">
+          <a-icon type="global" />
+        </a>
+        <a-menu slot="overlay" @click="onClick">
+          <a-menu-item key="zh_CN">中文</a-menu-item>
+          <a-menu-item key="en_US">English</a-menu-item>
+        </a-menu>
+      </a-dropdown>
     </a-layout-header>
   </div>
 </template>
@@ -22,6 +31,10 @@ export default {
   methods: {
     foldHandler() {
       this.$emit("toggleFold");
+    },
+    onClick({ key }) {
+      this.$router.push({ query: { locale: key } });
+      this.$i18n.locale = key;
     }
   }
 };

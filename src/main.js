@@ -1,4 +1,8 @@
 import Vue from "vue";
+import VueI18n from "vue-i18n";
+import enUS from "./locale/enUS";
+import zhCN from "./locale/zhCN";
+import queryString from "query-string";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store/index.js";
@@ -12,7 +16,10 @@ import {
   Icon,
   Checkbox,
   Radio,
-  Select
+  Select,
+  DatePicker,
+  Dropdown,
+  LocaleProvider
 } from "ant-design-vue";
 import Authorized from "./components/Authorized";
 import Auth from "./directives/auth";
@@ -30,6 +37,10 @@ Vue.use(Checkbox);
 Vue.use(Radio);
 Vue.use(Select);
 Vue.use(Auth);
+Vue.use(DatePicker);
+Vue.use(Dropdown);
+Vue.use(LocaleProvider);
+Vue.use(VueI18n);
 
 Vue.component("Authorized", Authorized);
 const IconFont404 = Icon.createFromIconfontCN({
@@ -37,7 +48,16 @@ const IconFont404 = Icon.createFromIconfontCN({
 });
 Vue.component("IconFont404", IconFont404);
 
+const i18n = new VueI18n({
+  locale: queryString.parse(location.search).locale || "zh_CN",
+  messages: {
+    zh_CN: { message: zhCN },
+    en_US: { message: enUS }
+  }
+});
+
 new Vue({
+  i18n,
   router,
   store,
   render: h => h(App)
