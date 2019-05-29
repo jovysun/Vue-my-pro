@@ -3,8 +3,14 @@
 </template>
 
 <script>
+// 核心功能包
+import echarts from "echarts/lib/echarts";
+// 用到的柱状图功能包
+import "echarts/lib/chart/bar";
+// 标题功能包
+import "echarts/lib/component/title";
+
 import debounce from "lodash/debounce";
-import echarts from "echarts";
 import { addListener, removeListener } from "resize-detector";
 export default {
   props: {

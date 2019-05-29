@@ -1,3 +1,5 @@
+const path = require("path");
+const webpack = require("webpack");
 module.exports = {
   css: {
     loaderOptions: {
@@ -38,5 +40,17 @@ module.exports = {
 
     // 添加要替换的 loader
     svgRule.use("vue-svg-loader").loader("vue-svg-loader");
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        "@ant-design/icons/lib/dist$": path.resolve(__dirname, "./src/icons.js")
+      }
+    },
+    plugins: [
+      // Ignore all locale files of moment.js
+      // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/)
+    ]
   }
 };
