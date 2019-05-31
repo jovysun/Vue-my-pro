@@ -1,6 +1,8 @@
+const currentAuth = ["admin"];
+export { currentAuth };
+
 export function getCurrentAuthority() {
-  // 后端返回用户角色
-  return ["admin"];
+  return currentAuth;
 }
 
 export function check(authority) {
