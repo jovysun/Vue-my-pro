@@ -40,8 +40,8 @@ export default {
       collapsed: false,
       list: [],
       menuData,
-      selectedKeys: [],
-      openKeys: []
+      selectedKeys: this.selectedKeysMap[this.$route.path],
+      openKeys: this.collapsed ? [] : this.openKeysMap[this.$route.path]
     };
   },
   watch: {
